@@ -10,6 +10,7 @@ class TopAlbum(models.Model):
     ranking=models.ForeignKey(Ranking,related_name='albums')
     album=models.ForeignKey(Album,related_name='in_rankings')
     position=models.PositiveIntegerField()
+    site_url=models.URLField(blank=True,null=True)
     class Meta:
         ordering=('position',)
         unique_together=(('ranking','album'),)
