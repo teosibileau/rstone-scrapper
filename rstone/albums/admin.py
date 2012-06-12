@@ -1,5 +1,5 @@
 from django.contrib.gis import admin
-from rstone.albums.models import *
+from albums.models import *
 
 class AlbumAdmin(admin.ModelAdmin):
     list_display=('name','band')

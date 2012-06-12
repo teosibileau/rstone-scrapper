@@ -6,7 +6,8 @@ import logging.handlers
 logger = logging.getLogger('rstone')
 
 from albums.models import *
-from rstone.top.models import *
+from artists.models import *
+from top.models import *
 
 class Struct:
     def __init__(self, **entries): 
@@ -37,7 +38,6 @@ def addAlbum(a):
         album.name=a.title
         album.band=band
         album.cover=a.cover
-        album.description=a.description
         album.save()
         logger.info('%s does not exits, generating instance of band'%album.name)
     try:
@@ -51,4 +51,33 @@ def addAlbum(a):
         top.site_url=a.url
         top.save()
         logger.info('album absent in %s at position %s, creating instance'%(ranking.title,a.position))
+
+@task
+def addArtist(a):
+    a=Struct(**a)
+    try:
+        ranking=Ranking.objects.get(title=a.ranking)
+        logger.info('%s already exits, getting instance of ranking'%ranking.title)
+    except:
+        ranking=Ranking(title=a.ranking)
+        ranking.save()
+        logger.info('No instance of %s exits, generating ranking'%ranking.title)
+    try:
+        artist=Artist.objects.get(name=a.artist)
+        logger.info('%s already exits, getting instance of artists'%artist.name)
+    except:
+        artist=Artist()
+        artist.name=a.artist
+        artist.role=a.role
+        artist.save()
+        logger.info('%s does not exits, generating instance of artist'%artist.name)
+    try:
+        top=TopArtist.objects.get(ranking=ranking,position=a.position)
+    except:
+        top=TopArtist()
+        top.ranking=ranking
+        top.artist=artist
+        top.position=a.position
+        top.site_url=a.url
+        top.save()
     

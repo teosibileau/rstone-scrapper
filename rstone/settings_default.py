@@ -115,7 +115,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'djcelery',
+    'polymorphic',
     'albums',
+    'artists',
     'top',
     'south',
 )
