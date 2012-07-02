@@ -31,7 +31,6 @@ pip install -r requirements.txt
 cd rstone
 python manage.py syncdb
 python manage.py migrate
-
 ```
 
 Any settings override (Database config, broker message config, etc) are conveniently made inside **settings_local.py**. Just copy the demo file:
@@ -45,7 +44,7 @@ and start customizing whatever you want/need.
 ## Start redis-server and celery deamon
 
 ```bash
-redis-server
+redis-servergit ad
 ```
 
 ```bash
