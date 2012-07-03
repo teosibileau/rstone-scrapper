@@ -27,10 +27,18 @@ virtualenv . --distribute
 source bin/activate
 # install dependencies
 pip install -r requirements.txt
-# install django
+# setup django app
 cd rstone
 python manage.py syncdb
 python manage.py migrate
+```
+
+### For OSX users only
+
+You need to install lxml with static deps before runing pip against requirements file:
+
+```bash
+STATIC_DEPS=true pip install lxml
 ```
 
 Any settings override (Database config, broker message config, etc) are conveniently made inside **settings_local.py**. Just copy the demo file:
@@ -44,7 +52,7 @@ and start customizing whatever you want/need.
 ## Start redis-server and celery deamon
 
 ```bash
-redis-servergit ad
+redis-server
 ```
 
 ```bash
