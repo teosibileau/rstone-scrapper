@@ -71,3 +71,5 @@ htmlcov
 removecache.sh
 
 *.db
+log
+log/*
