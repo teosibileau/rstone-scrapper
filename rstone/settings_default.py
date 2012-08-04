@@ -116,6 +116,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'djcelery',
     'polymorphic',
+    'tastypie',
     'albums',
     'artists',
     'top',

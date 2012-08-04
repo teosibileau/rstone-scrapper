@@ -18,9 +18,3 @@ class Album(models.Model):
     
     def __unicode__(self):
         return u"%s - %s"%(self.name,self.band)
-    
-class Artist(models.Model):
-    name=models.CharField(max_length=100)
-    def __unicode__(self):
-        return u"%s"%self.name
-    
