@@ -11,7 +11,7 @@ Because when people denies you access to datastores, it's super fun and useful t
 + Python 2.7
 + pip
 + virtualenv
-+ Some messaging service compatible with celery, i use [redis](http://redis.io)
++ Some broker compatible with celery, i use [redis](http://redis.io)
 + a db compatible with django, i use sqlite 3 in dev, postgres or mongodb in prod. If you are not familiar how django manages dbs go [here](https://docs.djangoproject.com/en/1.3/ref/databases/)
 
 ## Installation
@@ -19,18 +19,13 @@ Because when people denies you access to datastores, it's super fun and useful t
 Clone project and install requirements in virtualenv
 
 ```bash
+# install fabric in python global enviroment
+pip install fabric
+# clone repo
 git clone git://github.com/drkloc/rstone_scrapper.git
 cd rstone_scrapper
-# initialize virtualenv
-virtualenv . --distribute
-# activate enviroment
-source bin/activate
-# install dependencies
-pip install -r requirements.txt
-# setup django app
-cd rstone
-python manage.py syncdb
-python manage.py migrate
+# setup app
+fab DEV setup
 ```
 
 ### For OSX users only
@@ -41,7 +36,9 @@ You need to install lxml with static deps before runing pip against requirements
 STATIC_DEPS=true pip install lxml
 ```
 
-Any settings override (Database config, broker message config, etc) are conveniently made inside **settings_local.py**. Just copy the demo file:
+### Settings override
+
+Any settings override (Database config, broker config, etc) are conveniently made inside **settings_local.py**. Just copy the demo file:
 
 ```bash
 cp settings_local_demo.py settings_local.py
