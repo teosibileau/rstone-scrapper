@@ -1,5 +1,5 @@
 from top.models import *
-from albums.api import BandResource
+from albums.api import AlbumResource
 from artists.api import ArtistResource
 from tastypie.resources import ModelResource
 from tastypie import fields
@@ -11,7 +11,7 @@ class RankingResource(ModelResource):
 
 class TopAlbumResource(ModelResource):
     ranking=fields.ForeignKey(RankingResource,'ranking')
-    album=fields.ForeignKey(BandResource,'album')
+    album=fields.ForeignKey(AlbumResource,'album')
     class Meta:
         queryset = TopAlbum.objects.all()
         resource_name='top_albums'
