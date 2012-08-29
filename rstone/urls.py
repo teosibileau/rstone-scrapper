@@ -24,7 +24,11 @@ api.register(RankingResource())
 api.register(TopAlbumResource())
 api.register(TopArtistResource())
 
-urlpatterns = patterns('',
+urlpatterns = patterns('views',
+    url(r'^$', 'index', name='index'),
     url(r'^api/', include(api.urls)),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^rankings/', include('top.urls', namespace='rankings')),
+    url(r'^artists/', include('artists.urls', namespace='artists')),
+    url(r'^', include('albums.urls')),
 )
