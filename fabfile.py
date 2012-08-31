@@ -63,6 +63,9 @@ def DEV():
 # Deploys
 def setup():
     setup_virtualenv()
+    update()    
+
+def update():
     install_requirements()
     setup_app()
 

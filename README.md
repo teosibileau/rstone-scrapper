@@ -1,52 +1,53 @@
-# A (rocking) example of how to use Django (rocking) ORM to store in a db results from a Scrapy (rocking) spider 
+# Django y Scrapy
 
-As an example, i set up this project to scrap all over rolling stone lists/rankings and store them in a relational db with proper data models
- 
-## Why
+Un ejemplo de como usar el ORM de Django para guardar data obtenida mediante un Spider de Scrapy en una base de datos
 
-Because when people denies you access to datastores, it's super fun and useful to steal from them.
-
-## Non pip requirements
+## Requerimientos no instalables por pip
 
 + Python 2.7
 + pip
 + virtualenv
-+ Some broker compatible with celery, i use [redis](http://redis.io)
-+ a db compatible with django, i use sqlite 3 in dev, postgres or mongodb in prod. If you are not familiar how django manages dbs go [here](https://docs.djangoproject.com/en/1.3/ref/databases/)
++ Un broker compatible con celery, este proyecto asume [redis](http://redis.io) 
++ Una [motor de base de datos](https://docs.djangoproject.com/en/1.3/ref/databases/) compatible con django 
 
-## Installation
+## Instalación
 
-Clone project and install requirements in virtualenv
 
 ```bash
-# install fabric in python global enviroment
+# instalar fabric en ambiente global
 pip install fabric
-# clone repo
-git clone git://github.com/drkloc/rstone_scrapper.git
-cd rstone_scrapper
-# setup app
+# clonar repositorio
+git clone git://github.com/gcba/Scrapy-Django.git
+cd rScrapy-Django
+# correr setup
 fab DEV setup
 ```
 
-### For OSX users only
+### Para usuarios de OSX solamente
 
-You need to install lxml with static deps before runing pip against requirements file:
+Reemplazar el último comando por la siguiente secuencia
 
 ```bash
+fab DEV setup_virtualenv
+# activar virtualenv
+source bin/activate
+# instalar lxml con dependencias estáticas
 STATIC_DEPS=true pip install lxml
+# continuar instalación
+fab DEV update
+
 ```
 
-### Settings override
+### Customización de Settings 
 
-Any settings override (Database config, broker config, etc) are conveniently made inside **settings_local.py**. Just copy the demo file:
+Cualquier customización de settings necesaria hacerla sobre **settings_local.py**. Copiar archivo demo:
 
 ```bash
 cp settings_local_demo.py settings_local.py
 ```
+y modificarlo a gusto
 
-and start customizing whatever you want/need.
-
-## Start redis-server and celery deamon
+## Correr redis-server y celery deamon
 
 ```bash
 redis-server
@@ -56,10 +57,13 @@ redis-server
 python manage.py celeryd
 ```
 
-## Initialization
+## Correr spider
 
 ```bash
 scrapy runspider scrap.py
 ```
 
-## That's about it, enjoy.
+## Correr server de prueba para ver resultados 
+```bash
+python manage.py runserver
+```
