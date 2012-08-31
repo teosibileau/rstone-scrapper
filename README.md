@@ -1,6 +1,6 @@
 # Django y Scrapy
 
-Un ejemplo de como usar el ORM de Django para guardar data obtenida mediante un Spider de Scrapy en una base de datos
+Un ejemplo de como usar el Django para guardar datos obtenida mediante un Spider de Scrapy en una base de datos y exponerlos via REST
 
 ## Requerimientos no instalables por pip
 
