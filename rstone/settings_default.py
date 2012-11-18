@@ -1,6 +1,6 @@
 import os,re,sys
 sys.path.append(os.getcwd())
-ROOT_PATH = os.path.dirname(__file__)
+ROOT_PATH = os.path.dirname(os.path.realpath(__file__))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
